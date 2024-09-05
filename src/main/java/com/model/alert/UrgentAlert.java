@@ -12,8 +12,19 @@ public class UrgentAlert extends Alert{
         super(title, body, expirationTime);
     }
 
+    public UrgentAlert(UrgentAlert other) {
+        super(other);
+    }
+
+    @Override
+    public UrgentAlert copy() {
+        return new UrgentAlert(this);
+    }
+
     @Override
     public void appendAlert(ArrayList<Alert> alerts) {
         alerts.add(0,this);
     }
+
+
 }

@@ -2,7 +2,9 @@ package com.main.model.topic;
 
 import com.exceptions.TopicDoesNotExistException;
 import com.model.User.User;
-import com.model.alert.InfromativeAlert;
+import com.model.alert.Alert;
+import com.model.alert.InformativeAlert;
+import com.model.topic.Topic;
 import com.model.topic.TopicRegister;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -15,15 +17,19 @@ public class topicRegisterTest {
     public void createNewTopicRegistersWithUsers() {
         TopicRegister topicRegister = new TopicRegister();
         topicRegister.createTopic("My Topic");
-
         User user1 = new User("Mi user");
         User user2 = new User("Mi user 2");
         topicRegister.registerUserToTopic("My Topic", user1);
         topicRegister.registerUserToTopic("My Topic", user2);
-        InfromativeAlert alert = new InfromativeAlert("alert 1", "alert 1");
+        InformativeAlert alert = new InformativeAlert("alert 1", "alert 1");
         topicRegister.sendAlertToTopic("My Topic", alert);
-        Assert.assertTrue(user1.getAllValidAlerts().contains(alert));
-        Assert.assertTrue(user2.getAllValidAlerts().contains(alert));
+        Alert userAlertCopy1= user1.getAllValidAlerts().get(0);
+        Alert userAlertCopy2= user2.getAllValidAlerts().get(0);
+
+        Assert.assertEquals(userAlertCopy1.getTitle(), alert.getTitle());
+        Assert.assertEquals(userAlertCopy1.getBody(), alert.getBody());
+        Assert.assertEquals(userAlertCopy2.getTitle(), alert.getTitle());
+        Assert.assertEquals(userAlertCopy2.getBody(), alert.getBody());
     }
 
     @Test
@@ -35,10 +41,13 @@ public class topicRegisterTest {
         User user2 = new User("Mi user 2");
         topicRegister.registerUserToTopic("My Topic", user1);
         topicRegister.registerUserToTopic("My Topic 2", user2);
-        InfromativeAlert alert = new InfromativeAlert("alert 1", "alert 1");
+        InformativeAlert alert = new InformativeAlert("alert 1", "alert 1");
         topicRegister.sendAlertToTopic("My Topic", alert);
-        Assert.assertTrue(user1.getAllValidAlerts().contains(alert));
-        Assert.assertFalse(user2.getAllValidAlerts().contains(alert));
+        Alert userAlertCopy= user1.getAllValidAlerts().get(0);
+
+        Assert.assertEquals(userAlertCopy.getTitle(), alert.getTitle());
+        Assert.assertEquals(userAlertCopy.getBody(), alert.getBody());
+        Assert.assertEquals(user2.getAllValidAlerts().size(), 0);
     }
 
     @Test
@@ -50,7 +59,7 @@ public class topicRegisterTest {
         User user2 = new User("Mi user 2");
         topicRegister.registerUserToTopic("My Topic", user1);
         topicRegister.registerUserToTopic("My Topic", user2);
-        InfromativeAlert alert = new InfromativeAlert("alert 1", "alert 1");
+        InformativeAlert alert = new InformativeAlert("alert 1", "alert 1");
         topicRegister.sendAlertToUserInTopic("My Topic", alert, "Mi user");
         Assert.assertTrue(user1.getAllValidAlerts().contains(alert));
         Assert.assertFalse(user2.getAllValidAlerts().contains(alert));
@@ -70,7 +79,7 @@ public class topicRegisterTest {
     public void publicAnAlertToNonCreatedTopicThrowsException() {
         assertThrows(TopicDoesNotExistException.class, () -> {
                     TopicRegister topicRegister = new TopicRegister();
-                    topicRegister.sendAlertToTopic("My Topic", new InfromativeAlert("alert 1", "alert 1"));
+                    topicRegister.sendAlertToTopic("My Topic", new InformativeAlert("alert 1", "alert 1"));
                 }
         );
     }

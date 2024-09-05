@@ -30,7 +30,7 @@ public class Topic {
 
     public void receiveAlert(Alert alert) {
         alertManager.storeAlert(alert);
-        registeredUsers.values().forEach(user -> user.receiveAlert(alert));
+        registeredUsers.values().forEach(user -> user.receiveAlert(alert.copy()));
     }
 
     public void receiveAlert(Alert alert, String userName) {
@@ -40,10 +40,6 @@ public class Topic {
         }
         user.receiveAlert(alert);
         alertManager.storeAlert(alert);
-    }
-
-    public Collection<User> getAllUsers() {
-        return registeredUsers.values();
     }
 
     public ArrayList<Alert> getAllNonExpiredAlerts() {

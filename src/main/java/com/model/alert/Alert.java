@@ -21,6 +21,13 @@ public abstract class Alert {
         this.alertReadState = new AlertUnreadReadState();
     }
 
+    protected Alert(Alert other) {
+        this.title = other.title;
+        this.body = other.body;
+        this.expirationTime = other.expirationTime;
+        this.alertReadState = other.alertReadState;
+    }
+
     protected Alert(String title, String body, Instant expirationTime) {
         this.title = title;
         this.body = body;
@@ -29,6 +36,8 @@ public abstract class Alert {
     }
 
     public abstract void appendAlert(ArrayList<Alert> alerts);
+
+    public abstract Alert copy();
 
     public boolean isExpired() {
         return this.expirationTime
@@ -42,5 +51,13 @@ public abstract class Alert {
 
     public boolean isRead() {
         return this.alertReadState.isRead();
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getBody() {
+        return body;
     }
 }

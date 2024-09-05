@@ -1,7 +1,7 @@
 package com.main.model.alert;
 
 import com.model.alertmanager.AlertManager;
-import com.model.alert.InfromativeAlert;
+import com.model.alert.InformativeAlert;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -13,7 +13,7 @@ public class AlertManagerTest {
     @Test
     public void SingleAlertTest() {
         AlertManager alertManager = new AlertManager();
-        InfromativeAlert alert = new InfromativeAlert("alert 1", "alert 1");
+        InformativeAlert alert = new InformativeAlert("alert 1", "alert 1");
         alertManager.storeAlert(alert);
         Assert.assertTrue(alertManager.getAllAlerts().contains(alert));
     }
@@ -22,7 +22,7 @@ public class AlertManagerTest {
     public void SingleAlertWithFutureExpirationTest() {
         AlertManager alertManager = new AlertManager();
         Instant futureInstant = Instant.now().plus(Duration.ofDays(5));
-        InfromativeAlert alert = new InfromativeAlert("alert 1", "alert 1", futureInstant);
+        InformativeAlert alert = new InformativeAlert("alert 1", "alert 1", futureInstant);
         alertManager.storeAlert(alert);
         Assert.assertTrue(alertManager.getAllAlerts().contains(alert));
         Assert.assertTrue(alertManager.getAllNonExpiredAlerts().contains(alert));
@@ -33,7 +33,7 @@ public class AlertManagerTest {
     public void SingleAlertWithPastExpirationTest() {
         AlertManager alertManager = new AlertManager();
         Instant pastInstant = Instant.now().minus(Duration.ofDays(5));
-        InfromativeAlert alert = new InfromativeAlert("alert 1", "alert 1", pastInstant);
+        InformativeAlert alert = new InformativeAlert("alert 1", "alert 1", pastInstant);
         alertManager.storeAlert(alert);
         Assert.assertTrue(alertManager.getAllAlerts().contains(alert));
         Assert.assertFalse(alertManager.getAllNonExpiredAlerts().contains(alert));
@@ -42,8 +42,8 @@ public class AlertManagerTest {
     @Test
     public void TwoAlertsWithAReadAlertTest() {
         AlertManager alertManager = new AlertManager();
-        InfromativeAlert alert = new InfromativeAlert("alert 1", "alert 1");
-        InfromativeAlert readAlert = new InfromativeAlert("alert 2", "alert 2");
+        InformativeAlert alert = new InformativeAlert("alert 1", "alert 1");
+        InformativeAlert readAlert = new InformativeAlert("alert 2", "alert 2");
         alertManager.storeAlert(alert);
         alertManager.storeAlert(readAlert);
         readAlert.markAsRead();

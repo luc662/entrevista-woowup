@@ -2,7 +2,7 @@ package com.main.model.alert;
 
 
 import com.model.alert.Alert;
-import com.model.alert.InfromativeAlert;
+import com.model.alert.InformativeAlert;
 import com.model.alert.UrgentAlert;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -13,7 +13,7 @@ public class AlertTest {
     @Test
     public void SingleAlertTest() {
         ArrayList<Alert> alertList = new ArrayList<>();
-        InfromativeAlert alert = new InfromativeAlert("alert 1", "alert 1");
+        InformativeAlert alert = new InformativeAlert("alert 1", "alert 1");
         alert.appendAlert(alertList);
         Assert.assertTrue(alertList.contains(alert));
     }
@@ -21,9 +21,9 @@ public class AlertTest {
     @Test
     public void InformativeAlertsAreInsertedAsFIFOTest() {
         ArrayList<Alert> alertList = new ArrayList<>();
-        InfromativeAlert alert1 = new InfromativeAlert("alert 1", "alert 1");
-        InfromativeAlert alert2 = new InfromativeAlert("alert 2", "alert 2");
-        InfromativeAlert alert3 = new InfromativeAlert("alert 3", "alert 3");
+        InformativeAlert alert1 = new InformativeAlert("alert 1", "alert 1");
+        InformativeAlert alert2 = new InformativeAlert("alert 2", "alert 2");
+        InformativeAlert alert3 = new InformativeAlert("alert 3", "alert 3");
 
         alert1.appendAlert(alertList);
         alert2.appendAlert(alertList);
@@ -59,12 +59,12 @@ public class AlertTest {
     @Test
     public void UrgentAlertsAndImportantAlertsTest() {
         ArrayList<Alert> alertList = new ArrayList<>();
-        UrgentAlert urgentAlert1 = new UrgentAlert("Ualert 1", "Ualert 1");
-        InfromativeAlert informativeAlert1 = new InfromativeAlert("Ialert 1", "Ialert 1");
-        UrgentAlert urgentAlert2 = new UrgentAlert("Ualert 2", "Ualert 2");
-        InfromativeAlert informativeAlert2 = new InfromativeAlert("alert 2", "alert 2");
-        UrgentAlert urgentAlert3 = new UrgentAlert("Ualert 3", "Ualert 3");
-        InfromativeAlert informativeAlert3 = new InfromativeAlert("Ialert 3", "Ialert 3");
+        UrgentAlert urgentAlert1 = new UrgentAlert("Urgent alert 1", "Urgent alert 1");
+        InformativeAlert informativeAlert1 = new InformativeAlert("Informative alert 1", "Informative alert 1");
+        UrgentAlert urgentAlert2 = new UrgentAlert("Urgent alert 2", "Urgent alert 2");
+        InformativeAlert informativeAlert2 = new InformativeAlert("Informative alert 2", "Informative alert 2");
+        UrgentAlert urgentAlert3 = new UrgentAlert("Urgent alert 3", "Urgent alert 3");
+        InformativeAlert informativeAlert3 = new InformativeAlert("Informative alert 3", "Informative alert 3");
 
         urgentAlert1.appendAlert(alertList);
         informativeAlert1.appendAlert(alertList);
@@ -89,7 +89,7 @@ public class AlertTest {
 
     @Test
     public void AlertReadTest() {
-        InfromativeAlert alert = new InfromativeAlert("alert 1", "alert 1");
+        InformativeAlert alert = new InformativeAlert("alert 1", "alert 1");
 
         Assert.assertFalse(alert.isRead());
         alert.markAsRead();
