@@ -4,6 +4,7 @@ import com.main.exceptions.NonexistentUserError;
 import com.main.exceptions.UserAlreadyRegistredException;
 import com.main.model.User.User;
 import com.main.model.alert.Alert;
+import com.main.model.alert.AlertManager;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,11 +12,11 @@ import java.util.HashMap;
 
 public class Topic {
     private HashMap<String, User> registeredUsers;
-    private ArrayList<Alert> alerts;
+    private AlertManager alertManager;
 
     public Topic() {
         this.registeredUsers = new HashMap<>();
-        this.alerts = new ArrayList<>();
+        this.alertManager = new AlertManager();
     }
 
     public void registerUser(User user) {
@@ -26,18 +27,18 @@ public class Topic {
         this.registeredUsers.put(user.getName(), user);
     }
 
-    public void postAlert(Alert alert) {
-        alert.apendMessage(alerts);
+    public void receiveAlert(Alert alert) {
+        alertManager.storeAlert(alert);
         registeredUsers.values().forEach(user -> user.receiveAlert(alert));
     }
 
-    public void postAlert(Alert alert, String userName) {
+    public void receiveAlert(Alert alert, String userName) {
         User user = registeredUsers.get(userName);
         if(user == null) {
             throw new NonexistentUserError();
         }
         user.receiveAlert(alert);
-        alert.apendMessage(alerts);
+        alertManager.storeAlert(alert);
     }
 
     public Collection<User> getAllUsers() {
@@ -45,6 +46,6 @@ public class Topic {
     }
 
     public ArrayList<Alert> getAllAlerts() {
-        return new ArrayList<>(this.alerts);
+        return alertManager.getAllAlerts();
     }
 }

@@ -44,7 +44,7 @@ public class TopicTest {
     public void postAlertsAreAddedToTopicListTest() {
         Topic topic = new Topic();
         Alert alert = new InfromativeAlert("alert title", "Alert body");
-        topic.postAlert(alert);
+        topic.receiveAlert(alert);
         Assert.assertTrue(topic.getAllAlerts().contains(alert));
     }
 
@@ -56,7 +56,7 @@ public class TopicTest {
         User user2 = new User("Mi user 2");
         topic.registerUser(user1);
 
-        topic.postAlert(alert);
+        topic.receiveAlert(alert);
         Assert.assertTrue(user1.getAllAlerts().contains(alert));
         Assert.assertFalse(user2.getAllAlerts().contains(alert));
     }
@@ -69,7 +69,7 @@ public class TopicTest {
         User user2 = new User("Mi user 2");
         topic.registerUser(user1);
         topic.registerUser(user2);
-        topic.postAlert(alert, "Mi user");
+        topic.receiveAlert(alert, "Mi user");
         Assert.assertTrue(user1.getAllAlerts().contains(alert));
         Assert.assertFalse(user2.getAllAlerts().contains(alert));
     }
@@ -79,7 +79,7 @@ public class TopicTest {
         assertThrows(NonexistentUserError.class, () -> {
                     Topic topic = new Topic();
                     Alert alert = new InfromativeAlert("alert title", "Alert body");
-                    topic.postAlert(alert, "Mi user");
+                    topic.receiveAlert(alert, "Mi user");
                 }
         );
     }

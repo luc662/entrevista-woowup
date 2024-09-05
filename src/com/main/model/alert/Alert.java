@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public abstract class Alert {
-    protected String title;
-    protected String body;
+    private String title;
+    private String body;
     protected Optional<Instant> expirationTime;
 
     protected Alert(String title, String body) {
@@ -22,6 +22,12 @@ public abstract class Alert {
         this.expirationTime = Optional.ofNullable(expirationTime);
     }
 
-    public abstract void apendMessage(ArrayList<Alert> alerts);
+    public abstract void apendAlert(ArrayList<Alert> alerts);
+
+    public boolean isExpired(){
+        return expirationTime
+                .map(expiration -> expiration.isBefore(Instant.now()))
+                .orElse(false);
+    }
 
 }

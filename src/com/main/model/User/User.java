@@ -1,19 +1,17 @@
 package com.main.model.User;
 
 import com.main.model.alert.Alert;
-import com.main.model.topic.Topic;
+import com.main.model.alert.AlertManager;
 
 import java.util.ArrayList;
 
 public class User {
     private String name;
-    //private ArrayList<Topic> subscribedTopics;
-    private ArrayList<Alert> alertsInbox;
+    private AlertManager alertManager;
 
     public User(String name) {
         this.name = name;
-        //this.subscribedTopics = new ArrayList<>();
-        this.alertsInbox = new ArrayList<>();
+        this.alertManager = new AlertManager();
     }
 
     public String getName() {
@@ -21,10 +19,10 @@ public class User {
     }
 
     public void receiveAlert(Alert alert) {
-        alert.apendMessage(this.alertsInbox);
+        this.alertManager.storeAlert(alert);
     }
 
     public ArrayList<Alert> getAllAlerts() {
-        return new ArrayList<>(this.alertsInbox);
+        return new ArrayList<>(this.alertManager.getAllAlerts());
     }
 }
