@@ -1,6 +1,6 @@
 package com.main.model.alert;
 
-import com.model.alert.AlertManager;
+import com.model.alertmanager.AlertManager;
 import com.model.alert.InfromativeAlert;
 import org.testng.Assert;
 import org.testng.annotations.Test;

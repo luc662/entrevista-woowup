@@ -1,9 +1,9 @@
 package com.model.topic;
 
-import com.exceptions.NonexistentUserError;
+import com.exceptions.NonexistentUserException;
 import com.model.User.User;
 import com.model.alert.Alert;
-import com.model.alert.AlertManager;
+import com.model.alertmanager.AlertManager;
 
 import com.exceptions.UserAlreadyRegistredException;
 
@@ -36,7 +36,7 @@ public class Topic {
     public void receiveAlert(Alert alert, String userName) {
         User user = registeredUsers.get(userName);
         if (user == null) {
-            throw new NonexistentUserError();
+            throw new NonexistentUserException();
         }
         user.receiveAlert(alert);
         alertManager.storeAlert(alert);

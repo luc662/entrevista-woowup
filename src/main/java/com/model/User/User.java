@@ -2,7 +2,7 @@ package com.model.User;
 
 
 import com.model.alert.Alert;
-import com.model.alert.AlertManager;
+import com.model.alertmanager.AlertManager;
 
 import java.util.ArrayList;
 

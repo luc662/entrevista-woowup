@@ -1,4 +1,6 @@
-package com.model.alert;
+package com.model.alertmanager;
+
+import com.model.alert.Alert;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;

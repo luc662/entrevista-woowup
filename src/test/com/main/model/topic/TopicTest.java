@@ -1,7 +1,7 @@
 package com.main.model.topic;
 
 
-import com.exceptions.NonexistentUserError;
+import com.exceptions.NonexistentUserException;
 import com.exceptions.UserAlreadyRegistredException;
 import com.model.User.User;
 import com.model.alert.Alert;
@@ -77,7 +77,7 @@ public class TopicTest {
 
     @Test
     public void postAlertToNonexistentUserTest() {
-        assertThrows(NonexistentUserError.class, () -> {
+        assertThrows(NonexistentUserException.class, () -> {
                     Topic topic = new Topic();
                     Alert alert = new InfromativeAlert("alert title", "Alert body");
                     topic.receiveAlert(alert, "Mi user");
