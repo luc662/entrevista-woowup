@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class TopicRegister {
     private HashMap<String, Topic> topics;
 
-    TopicRegister() {
+    public TopicRegister() {
         topics = new HashMap<>();
     }
 
