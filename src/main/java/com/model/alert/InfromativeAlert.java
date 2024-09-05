@@ -14,7 +14,7 @@ public class InfromativeAlert extends Alert {
     }
 
     @Override
-    public void apendAlert(ArrayList<Alert> alerts) {
+    public void appendAlert(ArrayList<Alert> alerts) {
         alerts.add(this);
     }
 }

@@ -23,7 +23,7 @@ public class User {
         this.alertManager.storeAlert(alert);
     }
 
-    public ArrayList<Alert> getAllAlerts() {
-        return new ArrayList<>(this.alertManager.getAllAlerts());
+    public ArrayList<Alert> getAllValidAlerts() {
+        return new ArrayList<>(this.alertManager.getAllNonReadAndNonExpiredAlerts());
     }
 }

@@ -1,6 +1,7 @@
 package com.model.alert;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class AlertManager {
     private ArrayList<Alert> storedAlerts;
@@ -14,7 +15,18 @@ public class AlertManager {
         return new ArrayList<>(this.storedAlerts);
     }
 
+    public ArrayList<Alert> getAllNonExpiredAlerts() {
+        return storedAlerts.stream()
+                .filter(alert -> !alert.isExpired())
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+    public ArrayList<Alert> getAllNonReadAndNonExpiredAlerts() {
+        return storedAlerts.stream()
+                .filter(alert -> !alert.isExpired() && !alert.isRead())
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
     public void storeAlert(Alert alert) {
-        alert.apendAlert(storedAlerts);
+        alert.appendAlert(storedAlerts);
     }
 }

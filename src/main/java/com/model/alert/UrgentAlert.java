@@ -13,7 +13,7 @@ public class UrgentAlert extends Alert{
     }
 
     @Override
-    public void apendAlert(ArrayList<Alert> alerts) {
+    public void appendAlert(ArrayList<Alert> alerts) {
         alerts.add(0,this);
     }
 }

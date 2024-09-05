@@ -46,7 +46,7 @@ public class Topic {
         return registeredUsers.values();
     }
 
-    public ArrayList<Alert> getAllAlerts() {
-        return alertManager.getAllAlerts();
+    public ArrayList<Alert> getAllNonExpiredAlerts() {
+        return alertManager.getAllNonExpiredAlerts();
     }
 }

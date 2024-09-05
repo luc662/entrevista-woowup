@@ -46,7 +46,7 @@ public class TopicTest {
         Topic topic = new Topic();
         Alert alert = new InfromativeAlert("alert title", "Alert body");
         topic.receiveAlert(alert);
-        Assert.assertTrue(topic.getAllAlerts().contains(alert));
+        Assert.assertTrue(topic.getAllNonExpiredAlerts().contains(alert));
     }
 
     @Test
@@ -58,8 +58,8 @@ public class TopicTest {
         topic.registerUser(user1);
 
         topic.receiveAlert(alert);
-        Assert.assertTrue(user1.getAllAlerts().contains(alert));
-        Assert.assertFalse(user2.getAllAlerts().contains(alert));
+        Assert.assertTrue(user1.getAllValidAlerts().contains(alert));
+        Assert.assertFalse(user2.getAllValidAlerts().contains(alert));
     }
 
     @Test
@@ -71,8 +71,8 @@ public class TopicTest {
         topic.registerUser(user1);
         topic.registerUser(user2);
         topic.receiveAlert(alert, "Mi user");
-        Assert.assertTrue(user1.getAllAlerts().contains(alert));
-        Assert.assertFalse(user2.getAllAlerts().contains(alert));
+        Assert.assertTrue(user1.getAllValidAlerts().contains(alert));
+        Assert.assertFalse(user2.getAllValidAlerts().contains(alert));
     }
 
     @Test
