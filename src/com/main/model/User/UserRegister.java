@@ -1,22 +1,28 @@
 package com.main.model.User;
 
 
+import com.main.exceptions.UserAlreadyRegistredException;
+
 import java.util.Collection;
 import java.util.HashMap;
 
 
 public class UserRegister {
-    private HashMap<String, User> registredUsers;
+    private HashMap<String, User> users;
 
     public UserRegister() {
-        this.registredUsers = new HashMap<String, User>();
+        this.users = new HashMap<>();
     }
 
-    public void registerUser(User user){
-        this.registredUsers.put(user.getName(),user);
+    public void registerUser(User user) {
+        if (this.users.containsKey(user.getName())) {
+            throw new UserAlreadyRegistredException();
+        }
+
+        this.users.put(user.getName(), user);
     }
 
     public Collection<User> getAllUsers() {
-        return registredUsers.values();
+        return users.values();
     }
 }

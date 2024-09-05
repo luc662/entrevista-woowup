@@ -1,12 +1,15 @@
 package test.com.model.user;
 
 
+import com.main.exceptions.UserAlreadyRegistredException;
 import com.main.model.User.User;
 import com.main.model.User.UserRegister;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Collection;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class UserRegisterTest {
 
@@ -23,4 +26,15 @@ public class UserRegisterTest {
         Assert.assertTrue(allUsers.contains(user2));
     }
 
+    @Test
+    public void addAnAlreadyRegistredUserThrowsExceptionTest() {
+        assertThrows(UserAlreadyRegistredException.class, () -> {
+                    UserRegister userRegister = new UserRegister();
+                    User user1 = new User("Mi user");
+                    User user2 = new User("Mi user");
+                    userRegister.registerUser(user1);
+                    userRegister.registerUser(user2);
+                }
+        );
+    }
 }

@@ -1,6 +1,7 @@
 package com.main.model.alert;
 
 import java.time.Instant;
+import java.util.ArrayList;
 
 public class UrgentAlert extends Alert{
     public UrgentAlert(String title, String body) {
@@ -9,5 +10,10 @@ public class UrgentAlert extends Alert{
 
     public UrgentAlert(String title, String body, Instant expirationTime) {
         super(title, body, expirationTime);
+    }
+
+    @Override
+    public void apendMessage(ArrayList<Alert> alerts) {
+        alerts.add(0,this);
     }
 }
