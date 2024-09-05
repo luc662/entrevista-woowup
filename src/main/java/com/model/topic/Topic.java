@@ -1,14 +1,13 @@
 package com.model.topic;
 
 import com.exceptions.NonexistentUserException;
+import com.exceptions.UserAlreadyRegistredException;
 import com.model.User.User;
 import com.model.alert.Alert;
 import com.model.alertmanager.AlertManager;
-
-import com.exceptions.UserAlreadyRegistredException;
+import com.model.alertmanager.TopicAlertManager;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 
 public class Topic {
@@ -17,7 +16,7 @@ public class Topic {
 
     public Topic() {
         this.registeredUsers = new HashMap<>();
-        this.alertManager = new AlertManager();
+        this.alertManager = new TopicAlertManager();
     }
 
     public void registerUser(User user) {
@@ -43,6 +42,6 @@ public class Topic {
     }
 
     public ArrayList<Alert> getAllNonExpiredAlerts() {
-        return alertManager.getAllNonExpiredAlerts();
+        return alertManager.getAllValidAlerts();
     }
 }

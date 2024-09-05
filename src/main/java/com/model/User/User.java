@@ -3,6 +3,7 @@ package com.model.User;
 
 import com.model.alert.Alert;
 import com.model.alertmanager.AlertManager;
+import com.model.alertmanager.UserAlertManager;
 
 import java.util.ArrayList;
 
@@ -12,7 +13,7 @@ public class User {
 
     public User(String name) {
         this.name = name;
-        this.alertManager = new AlertManager();
+        this.alertManager = new UserAlertManager();
     }
 
     public String getName() {
@@ -24,6 +25,6 @@ public class User {
     }
 
     public ArrayList<Alert> getAllValidAlerts() {
-        return new ArrayList<>(this.alertManager.getAllNonReadAndNonExpiredAlerts());
+        return new ArrayList<>(this.alertManager.getAllValidAlerts());
     }
 }
