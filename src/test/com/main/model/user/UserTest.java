@@ -1,4 +1,4 @@
-package test.com.model.user;
+package com.main.model.user;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;

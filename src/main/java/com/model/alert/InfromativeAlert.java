@@ -1,8 +1,8 @@
-package com.main.model.alert;
+package com.model.alert;
 
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class InfromativeAlert extends Alert {
     public InfromativeAlert(String title, String body) {

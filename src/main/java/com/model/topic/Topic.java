@@ -1,10 +1,11 @@
-package com.main.model.topic;
+package com.model.topic;
 
-import com.main.exceptions.NonexistentUserError;
-import com.main.exceptions.UserAlreadyRegistredException;
-import com.main.model.User.User;
-import com.main.model.alert.Alert;
-import com.main.model.alert.AlertManager;
+import com.exceptions.NonexistentUserError;
+import com.model.User.User;
+import com.model.alert.Alert;
+import com.model.alert.AlertManager;
+
+import com.exceptions.UserAlreadyRegistredException;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -34,7 +35,7 @@ public class Topic {
 
     public void receiveAlert(Alert alert, String userName) {
         User user = registeredUsers.get(userName);
-        if(user == null) {
+        if (user == null) {
             throw new NonexistentUserError();
         }
         user.receiveAlert(alert);

@@ -1,11 +1,11 @@
-package test.com.model.user;
+package com.main.model.user;
 
-import com.main.exceptions.UserAlreadyRegistredException;
-import com.main.model.User.User;
-import com.main.model.User.UserRegister;
+
+import com.exceptions.UserAlreadyRegistredException;
+import com.model.User.User;
+import com.model.User.UserRegister;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;

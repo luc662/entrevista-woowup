@@ -1,4 +1,4 @@
-package com.main.exceptions;
+package com.exceptions;
 
 public class UnknowAlertError extends RuntimeException {
 }

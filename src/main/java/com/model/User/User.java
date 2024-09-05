@@ -1,7 +1,8 @@
-package com.main.model.User;
+package com.model.User;
 
-import com.main.model.alert.Alert;
-import com.main.model.alert.AlertManager;
+
+import com.model.alert.Alert;
+import com.model.alert.AlertManager;
 
 import java.util.ArrayList;
 

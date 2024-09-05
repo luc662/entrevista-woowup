@@ -1,4 +1,4 @@
-package com.main.model.alert;
+package com.model.alert;
 
 import java.time.Instant;
 import java.util.ArrayList;

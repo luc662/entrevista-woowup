@@ -1,11 +1,9 @@
-package com.main.model.User;
+package com.model.User;
 
-
-import com.main.exceptions.UserAlreadyRegistredException;
+import com.exceptions.UserAlreadyRegistredException;
 
 import java.util.Collection;
 import java.util.HashMap;
-
 
 public class UserRegister {
     private HashMap<String, User> users;

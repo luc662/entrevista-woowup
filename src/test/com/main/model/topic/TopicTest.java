@@ -1,11 +1,12 @@
-package test.com.model.topic;
+package com.main.model.topic;
 
-import com.main.exceptions.NonexistentUserError;
-import com.main.exceptions.UserAlreadyRegistredException;
-import com.main.model.User.User;
-import com.main.model.alert.Alert;
-import com.main.model.alert.InfromativeAlert;
-import com.main.model.topic.Topic;
+
+import com.exceptions.NonexistentUserError;
+import com.exceptions.UserAlreadyRegistredException;
+import com.model.User.User;
+import com.model.alert.Alert;
+import com.model.alert.InfromativeAlert;
+import com.model.topic.Topic;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

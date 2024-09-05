@@ -1,11 +1,11 @@
-package test.com.model.alert;
+package com.main.model.alert;
 
-import com.main.model.alert.Alert;
-import com.main.model.alert.InfromativeAlert;
-import com.main.model.alert.UrgentAlert;
+
+import com.model.alert.Alert;
+import com.model.alert.InfromativeAlert;
+import com.model.alert.UrgentAlert;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.util.ArrayList;
 
 public class AlertTest {
