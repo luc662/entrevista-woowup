@@ -1,5 +1,6 @@
 package test.com.model.topic;
 
+import com.main.exceptions.NonexistentUserError;
 import com.main.exceptions.UserAlreadyRegistredException;
 import com.main.model.User.User;
 import com.main.model.alert.Alert;
@@ -40,7 +41,7 @@ public class TopicTest {
     }
 
     @Test
-    public void postAlertsAreAddedToTopicList() {
+    public void postAlertsAreAddedToTopicListTest() {
         Topic topic = new Topic();
         Alert alert = new InfromativeAlert("alert title", "Alert body");
         topic.postAlert(alert);
@@ -48,7 +49,7 @@ public class TopicTest {
     }
 
     @Test
-    public void postAlertsAreAddedToRegisteredUsersList() {
+    public void postAlertsAreAddedToRegisteredUsersListTest() {
         Topic topic = new Topic();
         Alert alert = new InfromativeAlert("alert title", "Alert body");
         User user1 = new User("Mi user");
@@ -58,5 +59,28 @@ public class TopicTest {
         topic.postAlert(alert);
         Assert.assertTrue(user1.getAllAlerts().contains(alert));
         Assert.assertFalse(user2.getAllAlerts().contains(alert));
+    }
+
+    @Test
+    public void postAlertToSpecificUserInTopicTest() {
+        Topic topic = new Topic();
+        Alert alert = new InfromativeAlert("alert title", "Alert body");
+        User user1 = new User("Mi user");
+        User user2 = new User("Mi user 2");
+        topic.registerUser(user1);
+        topic.registerUser(user2);
+        topic.postAlert(alert, "Mi user");
+        Assert.assertTrue(user1.getAllAlerts().contains(alert));
+        Assert.assertFalse(user2.getAllAlerts().contains(alert));
+    }
+
+    @Test
+    public void postAlertToNonexistentUserTest() {
+        assertThrows(NonexistentUserError.class, () -> {
+                    Topic topic = new Topic();
+                    Alert alert = new InfromativeAlert("alert title", "Alert body");
+                    topic.postAlert(alert, "Mi user");
+                }
+        );
     }
 }

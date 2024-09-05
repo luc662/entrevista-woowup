@@ -1,6 +1,5 @@
 package test.com.model.user;
 
-
 import com.main.exceptions.UserAlreadyRegistredException;
 import com.main.model.User.User;
 import com.main.model.User.UserRegister;
@@ -27,7 +26,7 @@ public class UserRegisterTest {
     }
 
     @Test
-    public void addAnAlreadyRegistredUserThrowsExceptionTest() {
+    public void addAnAlreadyRegisteredUserThrowsExceptionTest() {
         assertThrows(UserAlreadyRegistredException.class, () -> {
                     UserRegister userRegister = new UserRegister();
                     User user1 = new User("Mi user");

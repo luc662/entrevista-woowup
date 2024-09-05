@@ -1,5 +1,6 @@
 package com.main.model.topic;
 
+import com.main.exceptions.NonexistentUserError;
 import com.main.exceptions.UserAlreadyRegistredException;
 import com.main.model.User.User;
 import com.main.model.alert.Alert;
@@ -28,6 +29,15 @@ public class Topic {
     public void postAlert(Alert alert) {
         alert.apendMessage(alerts);
         registeredUsers.values().forEach(user -> user.receiveAlert(alert));
+    }
+
+    public void postAlert(Alert alert, String userName) {
+        User user = registeredUsers.get(userName);
+        if(user == null) {
+            throw new NonexistentUserError();
+        }
+        user.receiveAlert(alert);
+        alert.apendMessage(alerts);
     }
 
     public Collection<User> getAllUsers() {
