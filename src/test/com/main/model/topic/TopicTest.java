@@ -91,4 +91,25 @@ public class TopicTest {
         Assert.assertTrue(user1AlertCopy.isRead());
         Assert.assertFalse(user2AlertCopy.isRead());
     }
+
+
+    @Test
+    public void AlertsToSpecificUsersAreMarkedAsSuchTest() {
+        Topic topic = new Topic();
+        Alert alert1 = new InformativeAlert("alert title", "Alert body");
+        Alert alert2 = new InformativeAlert("alert title", "Alert body");
+
+        User user1 = new User("Mi user");
+
+        topic.registerUser(user1);
+        topic.receiveAlert(alert1, "Mi user");
+        topic.receiveAlert(alert2);
+
+        Alert alert1Copy = user1.getAllValidAlerts().get(0);
+        Alert alert2Copy = user1.getAllValidAlerts().get(1);
+
+        Assert.assertTrue(alert1Copy.isForSpecificUser());
+        Assert.assertFalse(alert2Copy.isForSpecificUser());
+
+    }
 }

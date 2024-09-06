@@ -37,6 +37,7 @@ public class Topic {
         if (user == null) {
             throw new NonexistentUserException();
         }
+        alert.markForSpecificUser();
         user.receiveAlert(alert);
         alertManager.storeAlert(alert);
     }
