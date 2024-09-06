@@ -1,8 +1,8 @@
 package com.model.User;
 
+import com.exceptions.NonexistentUserException;
 import com.exceptions.UserAlreadyRegistredException;
 
-import java.util.Collection;
 import java.util.HashMap;
 
 public class UserRegister {
@@ -12,15 +12,18 @@ public class UserRegister {
         this.users = new HashMap<>();
     }
 
-    public void registerUser(User user) {
-        if (this.users.containsKey(user.getName())) {
+    public void registerUser(String userName) {
+        if (this.users.containsKey(userName)) {
             throw new UserAlreadyRegistredException();
         }
-
-        this.users.put(user.getName(), user);
+        User user = new User(userName);
+        this.users.put(userName, user);
     }
 
-    public Collection<User> getAllUsers() {
-        return users.values();
+    public User getUserByName(String userName) {
+        if (!this.users.containsKey(userName)) {
+            throw new NonexistentUserException();
+        }
+        return this.users.get(userName);
     }
 }

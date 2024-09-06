@@ -88,7 +88,7 @@ public class AlertTest {
     }
 
     @Test
-    public void AlertReadTest() {
+    public void AlertMarkAsReadTest() {
         InformativeAlert alert = new InformativeAlert("alert 1", "alert 1");
 
         Assert.assertFalse(alert.isRead());

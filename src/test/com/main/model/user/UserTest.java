@@ -3,6 +3,7 @@ package com.main.model.user;
 import com.model.User.User;
 import com.model.alert.Alert;
 import com.model.alert.InformativeAlert;
+import com.model.alert.UrgentAlert;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -21,7 +22,7 @@ public class UserTest {
     }
 
     @Test
-    public void addAlertWithFutureExpirationToUser() {
+    public void addInformativeAlertWithFutureExpirationToUser() {
         User user = new User("My user");
         Instant futureInstant = Instant.now().plus(Duration.ofDays(5));
         InformativeAlert alert = new InformativeAlert("alert 1", "alert 1", futureInstant);
@@ -30,13 +31,32 @@ public class UserTest {
     }
 
     @Test
-    public void addAlertWithPastExpirationToUser() {
+    public void addInformativeAlertWithPastExpirationToUser() {
         User user = new User("My user");
         Instant pastInstant = Instant.now().minus(Duration.ofDays(5));
         InformativeAlert alert = new InformativeAlert("alert 1", "alert 1", pastInstant);
         user.receiveAlert(alert);
         Assert.assertFalse(user.getAllValidAlerts().contains(alert));
     }
+
+    @Test
+    public void addUrgentAlertWithFutureExpirationToUser() {
+        User user = new User("My user");
+        Instant futureInstant = Instant.now().plus(Duration.ofDays(5));
+        UrgentAlert alert = new UrgentAlert("alert 1", "alert 1", futureInstant);
+        user.receiveAlert(alert);
+        Assert.assertTrue(user.getAllValidAlerts().contains(alert));
+    }
+
+    @Test
+    public void addUrgentAlertWithPastExpirationToUser() {
+        User user = new User("My user");
+        Instant pastInstant = Instant.now().minus(Duration.ofDays(5));
+        UrgentAlert alert = new UrgentAlert("alert 1", "alert 1", pastInstant);
+        user.receiveAlert(alert);
+        Assert.assertFalse(user.getAllValidAlerts().contains(alert));
+    }
+
 
     @Test
     public void markAsReadToAnAlertInUser() {
@@ -70,5 +90,4 @@ public class UserTest {
         Assert.assertFalse(validAlerts.contains(alert3));
         Assert.assertTrue(validAlerts.contains(alert4));
     }
-
 }

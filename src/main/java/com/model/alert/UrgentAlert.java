@@ -1,9 +1,9 @@
 package com.model.alert;
 
 import java.time.Instant;
-import java.util.ArrayList;
+import java.util.List;
 
-public class UrgentAlert extends Alert{
+public class UrgentAlert extends Alert {
     public UrgentAlert(String title, String body) {
         super(title, body);
     }
@@ -22,9 +22,7 @@ public class UrgentAlert extends Alert{
     }
 
     @Override
-    public void appendAlert(ArrayList<Alert> alerts) {
-        alerts.add(0,this);
+    public void appendAlert(List<Alert> alerts) {
+        alerts.add(0, this);
     }
-
-
 }

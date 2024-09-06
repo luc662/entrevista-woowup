@@ -5,7 +5,7 @@ import com.model.alert.readed.AlertReadState;
 import com.model.alert.readed.AlertUnreadReadState;
 
 import java.time.Instant;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public abstract class Alert {
@@ -43,7 +43,7 @@ public abstract class Alert {
         return isForSpecificUser;
     }
 
-    public abstract void appendAlert(ArrayList<Alert> alerts);
+    public abstract void appendAlert(List<Alert> alerts);
 
     public abstract Alert copy();
 

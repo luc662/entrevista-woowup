@@ -1,7 +1,7 @@
 package com.model.alert;
 
 import java.time.Instant;
-import java.util.ArrayList;
+import java.util.List;
 
 
 public class InformativeAlert extends Alert {
@@ -23,7 +23,7 @@ public class InformativeAlert extends Alert {
     }
 
     @Override
-    public void appendAlert(ArrayList<Alert> alerts) {
+    public void appendAlert(List<Alert> alerts) {
         alerts.add(this);
     }
 }
