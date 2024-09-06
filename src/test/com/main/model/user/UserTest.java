@@ -39,7 +39,7 @@ public class UserTest {
     }
 
     @Test
-    public void addReadAlertToUser() {
+    public void markAsReadToAnAlertInUser() {
         User user = new User("My user");
         InformativeAlert alert = new InformativeAlert("alert 1", "alert 1");
         user.receiveAlert(alert);
@@ -49,7 +49,7 @@ public class UserTest {
     }
 
     @Test
-    public void addMultipleAlertsToUser() {
+    public void addValidAndInvalidAlertsToUser() {
         User user = new User("My user");
         InformativeAlert alert1 = new InformativeAlert("alert 1", "alert 1");
         InformativeAlert alert2 = new InformativeAlert("alert 2", "alert 2");

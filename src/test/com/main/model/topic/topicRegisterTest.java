@@ -4,7 +4,6 @@ import com.exceptions.TopicDoesNotExistException;
 import com.model.User.User;
 import com.model.alert.Alert;
 import com.model.alert.InformativeAlert;
-import com.model.topic.Topic;
 import com.model.topic.TopicRegister;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -14,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class topicRegisterTest {
 
     @Test
-    public void createNewTopicRegistersWithUsers() {
+    public void createNewTopicRegistersWithUsersTest() {
         TopicRegister topicRegister = new TopicRegister();
         topicRegister.createTopic("My Topic");
         User user1 = new User("Mi user");
@@ -23,8 +22,8 @@ public class topicRegisterTest {
         topicRegister.registerUserToTopic("My Topic", user2);
         InformativeAlert alert = new InformativeAlert("alert 1", "alert 1");
         topicRegister.sendAlertToTopic("My Topic", alert);
-        Alert userAlertCopy1= user1.getAllValidAlerts().get(0);
-        Alert userAlertCopy2= user2.getAllValidAlerts().get(0);
+        Alert userAlertCopy1 = user1.getAllValidAlerts().get(0);
+        Alert userAlertCopy2 = user2.getAllValidAlerts().get(0);
 
         Assert.assertEquals(userAlertCopy1.getTitle(), alert.getTitle());
         Assert.assertEquals(userAlertCopy1.getBody(), alert.getBody());
@@ -33,7 +32,7 @@ public class topicRegisterTest {
     }
 
     @Test
-    public void alertsAreSentOnlyToDestinationTopic() {
+    public void alertsAreSentOnlyToDestinationTopicTest() {
         TopicRegister topicRegister = new TopicRegister();
         topicRegister.createTopic("My Topic");
         topicRegister.createTopic("My Topic 2");
@@ -43,7 +42,7 @@ public class topicRegisterTest {
         topicRegister.registerUserToTopic("My Topic 2", user2);
         InformativeAlert alert = new InformativeAlert("alert 1", "alert 1");
         topicRegister.sendAlertToTopic("My Topic", alert);
-        Alert userAlertCopy= user1.getAllValidAlerts().get(0);
+        Alert userAlertCopy = user1.getAllValidAlerts().get(0);
 
         Assert.assertEquals(userAlertCopy.getTitle(), alert.getTitle());
         Assert.assertEquals(userAlertCopy.getBody(), alert.getBody());
@@ -51,7 +50,7 @@ public class topicRegisterTest {
     }
 
     @Test
-    public void sendAlertToUserInATopic() {
+    public void sendAlertToUserInATopicTest() {
         TopicRegister topicRegister = new TopicRegister();
         topicRegister.createTopic("My Topic");
 
@@ -66,7 +65,7 @@ public class topicRegisterTest {
     }
 
     @Test
-    public void registerUserToNonCreatedTopicThrowsException() {
+    public void registerUserToNonCreatedTopicThrowsExceptionTest() {
         assertThrows(TopicDoesNotExistException.class, () -> {
                     TopicRegister topicRegister = new TopicRegister();
                     User user1 = new User("Mi user");
@@ -76,10 +75,20 @@ public class topicRegisterTest {
     }
 
     @Test
-    public void publicAnAlertToNonCreatedTopicThrowsException() {
+    public void publicAnAlertToNonCreatedTopicThrowsExceptionTest() {
         assertThrows(TopicDoesNotExistException.class, () -> {
                     TopicRegister topicRegister = new TopicRegister();
                     topicRegister.sendAlertToTopic("My Topic", new InformativeAlert("alert 1", "alert 1"));
+                }
+        );
+    }
+
+    @Test
+    public void createATopicAlreadyCreatedThrowErrorTest() {
+        assertThrows(TopicDoesNotExistException.class, () -> {
+                    TopicRegister topicRegister = new TopicRegister();
+                    topicRegister.createTopic("My Topic");
+                    topicRegister.createTopic("My Topic");
                 }
         );
     }

@@ -1,5 +1,6 @@
 package com.model.topic;
 
+import com.exceptions.TopicAlreadyCreatedException;
 import com.exceptions.TopicDoesNotExistException;
 import com.model.User.User;
 import com.model.alert.Alert;
@@ -15,7 +16,7 @@ public class TopicRegister {
 
     public void createTopic(String topicName) {
         if (topics.containsKey(topicName)) {
-            throw new TopicDoesNotExistException();
+            throw new TopicAlreadyCreatedException();
         }
         this.topics.put(topicName, new Topic());
     }
